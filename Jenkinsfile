@@ -12,7 +12,7 @@ pipeline {
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit tests...'
-                echo 'sh 'mvn test''
+                echo "sh 'mvn test'"
                 echo 'Running integration tests...'
             }
 
@@ -36,7 +36,7 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 echo 'Analyzing the code...'
-                echo 'sh 'sonar-scanner''
+                echo "sh 'sonar-scanner'"
 
             }
         }
@@ -44,7 +44,7 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan...'
-                echo 'sh 'owasp-zap-command''
+                echo "sh 'owasp-zap-command'"
                 post {
                     failure {
                         emailext body: 'Security Scan failed! Check the attachment for logs.',
@@ -66,22 +66,22 @@ pipeline {
             steps {
                 echo 'Deploying to staging server...'
                 echo "sh 'aws s3 cp my-app.zip s3:staging-bucket/'"
-                echo 'sh 'aws ec2 create-instance ''
+                echo "sh 'aws ec2 create-instance '"
                 }
         }
         
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on staging...'
-                echo 'sh 'run-integration-tests-command''
+                echo "sh 'run-integration-tests-command'"
                 }
         }
         
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to production server...'
-                echo 'sh 'aws s3 cp my-app.zip s3:production-bucket/''
-                echo 'sh 'aws ec2 create-instance ...''
+                echo "sh 'aws s3 cp my-app.zip s3:production-bucket/'"
+                echo "sh 'aws ec2 create-instance ...'"
             }
         }
     }
