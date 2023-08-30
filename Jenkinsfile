@@ -65,7 +65,7 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to staging server...'
-                echo 'sh 'aws s3 cp my-app.zip s3:staging-bucket/'' 
+                echo "sh 'aws s3 cp my-app.zip s3:staging-bucket/'"
                 echo 'sh 'aws ec2 create-instance ''
                 }
         }
