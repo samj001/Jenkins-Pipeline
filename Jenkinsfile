@@ -18,14 +18,15 @@ pipeline {
 
             post {
                 failure {
-                    emailext body: 'Unit and Integration Tests failed! Check the attachment for logs.',
+                    emailext attachLog: true,
+                            body: 'Unit and Integration Tests failed! Check the attachment for logs.',
                              subject: 'Unit and Integration Tests Failed',
                              to: 'mackenzie0175@gmail.com',
                              attachmentsPattern: '**/*.log'
                 }
                 success {
-                    
-                    emailext body: 'Unit and Integration Tests succeeded! Check the attachment for logs.',
+                    emailext attachLog: true,
+                            body: 'Unit and Integration Tests succeeded! Check the attachment for logs.',
                              subject: 'Unit and Integration Tests Succeeded',
                              to: 'mackenzie0175@gmail.com',
                              attachmentsPattern: '**/*.log'
@@ -43,19 +44,21 @@ pipeline {
         
         stage('Security Scan') {
             steps {
-                echo 'Performing security scan....'
+                echo 'Performing security scan...'
                 echo "sh 'owasp-zap-command'"
                 
             }
             post {
                 failure {
-                    emailext body: 'Security Scan failed! Check the attachment for logs.',
+                    emailext attachLog: true,
+                            body: 'Security Scan failed! Check the attachment for logs.',
                             subject: 'Security Scan Failed',
                             to: 'mackenzie0175@gmail.com',
                             attachmentsPattern: '**/*.log'
                 }
                 success {
-                    emailext body: 'Security Scan succeeded! Check the attachment for logs.',
+                    emailext attachLog: true,
+                            body: 'Security Scan succeeded! Check the attachment for logs.',
                             subject: 'Security Scan Succeeded',
                             to: 'mackenzie0175@gmail.com',
                             attachmentsPattern: '**/*.log'
