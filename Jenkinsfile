@@ -45,19 +45,20 @@ pipeline {
             steps {
                 echo 'Performing security scan...'
                 echo "sh 'owasp-zap-command'"
-                post {
-                    failure {
-                        emailext body: 'Security Scan failed! Check the attachment for logs.',
-                                subject: 'Security Scan Failed',
-                                to: 'mackenzie0175@gmail.com',
-                                attachmentsPattern: '**/*.log'
-                    }
-                    success {
-                        emailext body: 'Security Scan succeeded! Check the attachment for logs.',
-                                subject: 'Security Scan Succeeded',
-                                to: 'mackenzie0175@gmail.com',
-                                attachmentsPattern: '**/*.log'
-                    }
+                
+            }
+            post {
+                failure {
+                    emailext body: 'Security Scan failed! Check the attachment for logs.',
+                            subject: 'Security Scan Failed',
+                            to: 'mackenzie0175@gmail.com',
+                            attachmentsPattern: '**/*.log'
+                }
+                success {
+                    emailext body: 'Security Scan succeeded! Check the attachment for logs.',
+                            subject: 'Security Scan Succeeded',
+                            to: 'mackenzie0175@gmail.com',
+                            attachmentsPattern: '**/*.log'
                 }
             }
         }
