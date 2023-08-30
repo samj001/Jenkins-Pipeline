@@ -43,7 +43,7 @@ pipeline {
         
         stage('Security Scan') {
             steps {
-                echo 'Performing security scan...'
+                echo 'Performing security scan....'
                 echo "sh 'owasp-zap-command'"
                 
             }
